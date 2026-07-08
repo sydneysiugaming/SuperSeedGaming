@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUPER SEED GAMING LIMITED</title>
+<style>
+  /* ============================
+     Reset & base
+     ============================ */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    background: #1a1a2e;
+    color: #e8e8e8;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ============================
+     Subtle dot grid background (modern app feel)
+     ============================ */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(124, 252, 0, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ============================
+     Navigation
+     ============================ */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(26, 26, 46, 0.92);
+    border-bottom: 1px solid rgba(124, 252, 0, 0.35);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  nav .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    color: #7CFC00;
+    letter-spacing: 2px;
+  }
+  nav .brand .nav-logo {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+  }
+  nav ul li a {
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav ul li a:hover {
+    background: rgba(255, 215, 0, 0.12);
+    color: #FFD700;
+  }
+
+  /* ============================
+     Layout
+     ============================ */
+  section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 72px 24px;
+    position: relative;
+    z-index: 1;
+  }
+  section h2 {
+    font-size: 30px;
+    color: #7CFC00;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+  section h2 .accent {
+    color: #FFD700;
+  }
+  section p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #d0d0d0;
+  }
+
+  /* ============================
+     Hero
+     ============================ */
+  #hero {
+    text-align: center;
+    padding-top: 88px;
+    padding-bottom: 80px;
+  }
+  #hero .logo-wrap {
+    margin-bottom: 28px;
+  }
+  #hero .logo-wrap img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 24px rgba(124, 252, 0, 0.25));
+  }
+  #hero h1 {
+    font-size: 44px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 800;
+  }
+  #hero h1 .highlight {
+    color: #7CFC00;
+  }
+  #hero .tagline {
+    font-size: 17px;
+    color: #FFD700;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  #hero .lede {
+    max-width: 620px;
+    margin: 0 auto 32px;
+    font-size: 17px;
+    color: #c0c0c0;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #7CFC00;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(124, 252, 0, 0.35);
+    transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: #92ff1a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(124, 252, 0, 0.5);
+  }
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(124, 252, 0, 0.3);
+  }
+
+  /* ============================
+     About
+     ============================ */
+  #about .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+  #about .stat {
+    background: linear-gradient(145deg, #252540, #1f1f36);
+    border: 1px solid rgba(124, 252, 0, 0.25);
+    padding: 22px 18px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  }
+  #about .stat .num {
+    font-size: 34px;
+    color: #FFD700;
+    font-weight: 800;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  #about .stat .label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #7CFC00;
+    font-weight: 600;
+  }
+
+  /* ============================
+     Games
+     ============================ */
+  #games .game-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 28px;
+  }
+  @media (min-width: 760px) {
+    #games .game-grid { grid-template-columns: 1fr 1fr; }
+  }
+  #games .game-card {
+    background: linear-gradient(160deg, #252540 0%, #1f1f36 100%);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+  }
+  /* stretched link — invisible overlay that captures whole-card clicks
+     except where .store-btn / .store-buttons sit (they win via z-index) */
+  #games .game-card .game-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 16px;
+  }
+  #games .game-card .thumb,
+  #games .game-card h3,
+  #games .game-card .desc,
+  #games .game-card .skills { position: relative; z-index: 2; pointer-events: none; }
+  #games .game-card .store-buttons { position: relative; z-index: 3; }
+  #games .game-card:hover .game-card-link::before {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    border-radius: 18px;
+  }
+  #games .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  }
+  #games .game-card .thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #0f0f1f;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+  #games .game-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  #games .game-card h3 {
+    color: #FFD700;
+    font-size: 24px;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+  #games .game-card .desc {
+    font-size: 15px;
+    color: #c8c8d0;
+    flex-grow: 1;
+    line-height: 1.55;
+  }
+  #games .game-card .desc strong {
+    color: #FFD700;
+  }
+  #games .game-card .platforms {
+    font-size: 11px;
+    color: #7CFC00;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border-top: 1px solid rgba(255, 215, 0, 0.18);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+
+  /* ============================
+     Store buttons (under each game icon)
+     ============================ */
+  .store-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: #0f0f1f;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+    cursor: pointer;
+    flex: 1 1 130px;
+    max-width: 180px;
+    text-align: left;
+  }
+  .store-btn:hover {
+    background: #252540;
+    border-color: #7CFC00;
+    transform: translateY(-2px);
+  }
+  .store-btn:active {
+    transform: translateY(0);
+  }
+  .store-btn .icon-svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  .store-btn .label {
+    display: block;
+    font-size: 9px;
+    color: #9090a0;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .store-btn .name {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+  .store-btn .col {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .store-btn.coming-soon {
+    opacity: 0.78;
+    border-color: rgba(255, 215, 0, 0.35);
+  }
+  .store-btn.coming-soon:hover {
+    border-color: #FFD700;
+  }
+
+  /* ============================
+     Coming-soon modal
+     ============================ */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 18, 0.78);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: linear-gradient(160deg, #252540 0%, #1f1f36 100%);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 16px;
+    padding: 32px 28px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+  .modal .modal-icon {
+    font-size: 44px;
+    margin-bottom: 8px;
+  }
+  .modal h3 {
+    color: #FFD700;
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .modal p {
+    color: #d0d0d0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .modal p strong { color: #7CFC00; }
+  .modal .modal-close {
+    background: #7CFC00;
+    color: #1a1a2e;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .modal .modal-close:hover {
+    background: #92ff1a;
+    transform: translateY(-1px);
+  }
+  .skills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .skill-chip {
+    background: rgba(124, 252, 0, 0.08);
+    border: 1px solid rgba(124, 252, 0, 0.35);
+    color: #7CFC00;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+  }
+  .skill-chip .icon { font-size: 13px; }
+
+  /* ============================
+     Contact
+     ============================ */
+  #contact {
+    text-align: center;
+  }
+  #contact .email {
+    display: inline-block;
+    margin: 24px 0;
+    font-size: 22px;
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid #7CFC00;
+    padding-bottom: 4px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #contact .email:hover {
+    color: #ffe770;
+    border-color: #FFD700;
+  }
+  #contact .address-block {
+    margin-top: 22px;
+    color: #9090a0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1.85;
+  }
+  #contact .address-block .label {
+    color: #7CFC00;
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* ============================
+     Footer
+     ============================ */
+  footer {
+    text-align: center;
+    padding: 36px 24px;
+    background: #0f0f1f;
+    color: #7a7a85;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(124, 252, 0, 0.2);
+    position: relative;
+    z-index: 1;
+  }
+  footer .company {
+    color: #c0c0c8;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+  footer a {
+    color: #7CFC00;
+    text-decoration: none;
+  }
+  footer a:hover { color: #FFD700; }
+  footer .footer-meta {
+    margin-top: 14px;
+    line-height: 1.85;
+  }
+
+  /* ============================
+     Mobile
+     ============================ */
+  @media (max-width: 640px) {
+    #hero h1 { font-size: 30px; }
+    #hero .logo-wrap img { width: 140px; height: 140px; }
+    nav ul { gap: 8px; }
+    nav ul li a { font-size: 11px; padding: 4px 6px; letter-spacing: 1px; }
+    nav .brand { font-size: 14px; letter-spacing: 1px; }
+    nav .brand .nav-logo { height: 26px; width: 26px; }
+    #games .game-card { text-align: center; }
+    #games .game-card .skills { justify-content: center; }
+    .store-buttons { flex-direction: column; align-items: center; }
+    .store-btn { max-width: 260px; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =====================
+     Navigation
+     ===================== -->
+<nav>
+  <div class="brand">
+    <img src="seed-logo-shield.png" alt="" class="nav-logo">
+    SUPER SEED
+  </div>
+  <ul>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#games">GAMES</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="terms-of-service.html">TERMS</a></li>
+    <li><a href="privacy-policy.html">PRIVACY</a></li>
+  </ul>
+</nav>
+
+<!-- =====================
+     Hero
+     ===================== -->
+<section id="hero">
+  <div class="logo-wrap">
+    <img src="seed-logo-shield.png" alt="SUPER SEED GAMING LIMITED">
+  </div>
+  <h1><span class="highlight">SUPER SEED</span> GAMING</h1>
+  <div class="tagline">YOUR GATEWAY TO FUN CASUAL GAMES</div>
+  <p class="lede">
+    We believe creativity can deliver addictive mobile gaming experiences.
+  </p>
+  <a href="#games" class="btn">EXPLORE OUR GAMES</a>
+</section>
+
+<!-- =====================
+     About
+     ===================== -->
+<section id="about">
+  <h2>ABOUT <span class="accent">US</span></h2>
+  <p>
+    SUPER SEED GAMING LIMITED is a casual mobile game studio focused on
+    creating fun, instantly playable games for Android and iOS.
+    We plant fresh ideas, water them with care, and harvest games
+    that keep players coming back for "just one more round."
+  </p>
+  <p>
+    We believe creativity can deliver addictive mobile gaming experiences.
+    Every game we ship is designed to be picked up in seconds,
+    understood in moments, and enjoyed for hours.
+  </p>
+  <div class="stats">
+    <div class="stat">
+      <div class="num">2</div>
+      <div class="label">GAMES SHIPPED</div>
+    </div>
+    <div class="stat">
+      <div class="num">2</div>
+      <div class="label">PLATFORMS</div>
+    </div>
+    <div class="stat">
+      <div class="num">CASUAL</div>
+      <div class="label">FOCUS</div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     Games
+     ===================== -->
+<section id="games">
+  <h2>OUR <span class="accent">GAMES</span></h2>
+  <div class="game-grid">
+
+    <!-- 3072 -->
+    <div class="game-card">
+      <a href="3072.html" class="game-card-link" aria-label="Open 3072 details"></a>
+      <div class="thumb">
+        <img src="game-3072.png" alt="3072 app icon">
+      </div>
+      <h3>3072</h3>
+      <p class="desc">
+        The classic 2048 formula, supercharged. Slide and merge tiles to
+        reach <strong>3072</strong>. Use three powerful skills mid-board
+        to break through walls and chain impossible combos.
+      </p>
+      <div class="skills">
+        <div class="skill-chip"><span class="icon">&#x1F4A3;</span> BOMB</div>
+        <div class="skill-chip"><span class="icon">&#x1F9FD;</span> SWAP</div>
+        <div class="skill-chip"><span class="icon">&#x2728;</span> GENERATE</div>
+      </div>
+      <div class="store-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.sydneysiu.wkiat3072"
+           class="store-btn"
+           target="_blank" rel="noopener"
+           onclick="event.stopPropagation();">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.119 12l2.579-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303L5.864 2.658z"/>
+          </svg>
+          <span class="col">
+            <span class="label">GET IT ON</span>
+            <span class="name">Google Play</span>
+          </span>
+        </a>
+        <a href="#" class="store-btn coming-soon" data-game="3072" data-store="iOS App Store">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <span class="col">
+            <span class="label">COMING SOON</span>
+            <span class="name">App Store</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Rectangular Go -->
+    <div class="game-card">
+      <a href="rectangular-go.html" class="game-card-link" aria-label="Open Rectangular Go details"></a>
+      <div class="thumb">
+        <img src="game-rectangular-go.png" alt="Rectangular Go app icon">
+      </div>
+      <h3>RECTANGULAR GO</h3>
+      <p class="desc">
+        An endless casual game driven by music. Bounce rectangles off
+        the walls in sync with the beat. The longer you last, the
+        faster the rhythm &mdash; how far can you ride the groove?
+      </p>
+      <div class="store-buttons">
+        <a href="#" class="store-btn coming-soon" data-game="Rectangular Go" data-store="Google Play">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.119 12l2.579-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303L5.864 2.658z"/>
+          </svg>
+          <span class="col">
+            <span class="label">COMING SOON</span>
+            <span class="name">Google Play</span>
+          </span>
+        </a>
+        <a href="#" class="store-btn coming-soon" data-game="Rectangular Go" data-store="iOS App Store">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <span class="col">
+            <span class="label">COMING SOON</span>
+            <span class="name">App Store</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================
+     Contact
+     ===================== -->
+<section id="contact">
+  <h2>GET IN <span class="accent">TOUCH</span></h2>
+  <p>For business inquiries, press, or partnership opportunities.</p>
+  <a href="mailto:sydneysiu@superseedgaming.com" class="email">
+    sydneysiu@superseedgaming.com
+  </a>
+  <div class="address-block">
+    <div class="label">&mdash; ADDRESS &mdash;</div>
+    S63, 24 SPACE, FLACT C, 2/F, WONG KING INDUSTRIAL BUILDING,<br>
+    2-4 TAI YAU STREET, SAN PO KONG, HONG KONG
+  </div>
+</section>
+
+<!-- =====================
+     Footer
+     ===================== -->
+<footer>
+  <p class="company">&copy; 2026 SUPER SEED GAMING LIMITED &middot; ALL RIGHTS RESERVED</p>
+  <p class="footer-meta">
+    S63, 24 SPACE, FLACT C, 2/F, WONG KING INDUSTRIAL BUILDING, 2-4 TAI YAU STREET, SAN PO KONG, HONG KONG
+  </p>
+  <p class="footer-meta">
+    <a href="terms-of-service.html">Terms of Service</a>
+    &nbsp;&bull;&nbsp;
+    <a href="privacy-policy.html">Privacy Policy</a>
+    &nbsp;&bull;&nbsp;
+    <a href="mailto:sydneysiu@superseedgaming.com">sydneysiu@superseedgaming.com</a>
+  </p>
+</footer>
+
+<!-- =====================
+     Coming-soon modal (shared)
+     ===================== -->
+<div id="comingSoonModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <div class="modal-icon">&#x1F680;</div>
+    <h3 id="modal-title">COMING SOON</h3>
+    <p id="modal-body">
+      <span id="modal-game">This game</span> is not yet available on
+      <span id="modal-store">this store</span>.
+      We're submitting it to the store very soon. Stay tuned!
+    </p>
+    <button class="modal-close" type="button" onclick="closeModal()">GOT IT</button>
+  </div>
+</div>
+
+<script>
+  // Open modal with the appropriate game + store labels
+  function openComingSoon(game, store) {
+    document.getElementById('modal-game').textContent = game;
+    document.getElementById('modal-store').textContent = store;
+    document.getElementById('comingSoonModal').classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('comingSoonModal').classList.remove('open');
+  }
+  // Wire up all .coming-soon links
+  document.querySelectorAll('.store-btn.coming-soon').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var game  = btn.getAttribute('data-game')  || 'This game';
+      var store = btn.getAttribute('data-store') || 'this store';
+      openComingSoon(game, store);
+    });
+  });
+  // Close on backdrop click
+  document.getElementById('comingSoonModal').addEventListener('click', function (e) {
+    if (e.target === this) closeModal();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
